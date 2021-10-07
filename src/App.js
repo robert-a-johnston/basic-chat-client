@@ -7,18 +7,21 @@ import Chat from './components/Chat'
 const socket = io.connect('http://localhost:3001')
 
 function App() {
+  // state information
   const [userName, setUserName] = useState('')
   const [room, setRoom] = useState('')
 
+  // function to join room
   const joinRoom = () => {
     if(userName !== '' && room !== ''){
       socket.emit('join_room', room)
       
     }
   }
+
   return (
     <div className="App">
-      <h3>Join a chat</h3>
+      <h3>Join a ChatRoom</h3>
       <input 
         type='text' 
         placeholder='User...' 
@@ -26,7 +29,7 @@ function App() {
           setUserName(event.target.value)
         }}
       />
-      <input 
+      <input
         type='text' 
         placeholder='Room'
         onChange={(event) => {
